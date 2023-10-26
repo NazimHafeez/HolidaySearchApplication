@@ -10,7 +10,7 @@ namespace UnitTests
         [Fact]
         public void ReadFlightInputData()
         {
-            var data= new JsonFileAdapter().Read<Flight>(GetJsonFileAdapterOptions("Flights.json"));
+            var data= new JsonFileSourceAdapter().Read<Flight>(GetJsonFileAdapterOptions("Flights.json"));
             
             // Asserts
             data.Should().NotBeNull();
@@ -21,7 +21,7 @@ namespace UnitTests
         [Fact]
         public void ReadHotelInputData()
         {
-            var data = new JsonFileAdapter().Read<Hotel>(GetJsonFileAdapterOptions("Hotels.json"));
+            var data = new JsonFileSourceAdapter().Read<Hotel>(GetJsonFileAdapterOptions("Hotels.json"));
             Assert.NotNull(data);
 
             // Asserts
@@ -33,7 +33,7 @@ namespace UnitTests
         [Fact]
         public void ReadEmptyJsonInput()
         {
-            var data = new JsonFileAdapter().Read<Hotel>(GetJsonFileAdapterOptions("EmptyInput.json"));
+            var data = new JsonFileSourceAdapter().Read<Hotel>(GetJsonFileAdapterOptions("EmptyInput.json"));
             Assert.NotNull(data);
 
             // Asserts
@@ -41,10 +41,10 @@ namespace UnitTests
             data.Count.Should().Be(0);
         }
 
-        private InputOptions<JsonFileAdapterOptions> GetJsonFileAdapterOptions(string jsonFileName)
+        private SourceOptions<JsonFileSourceAdapterOptions> GetJsonFileAdapterOptions(string jsonFileName)
         {
             var jsonInputFile = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName) + $"\\TestData\\{jsonFileName}";
-            return new InputOptions<JsonFileAdapterOptions>(new JsonFileAdapterOptions { JsonFile = jsonInputFile });
+            return new SourceOptions<JsonFileSourceAdapterOptions>(new JsonFileSourceAdapterOptions { JsonFile = jsonInputFile });
         }
     }
 }

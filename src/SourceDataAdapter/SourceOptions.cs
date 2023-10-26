@@ -1,8 +1,8 @@
 namespace HolidaySearchApplication.InputAdapters
 {
-    public class InputOptions<T> where T : IOptions
+    public class SourceOptions<T> where T : IOptions
     {
-        public InputOptions(T options)
+        public SourceOptions(T options)
         {
             Options = options;
         }

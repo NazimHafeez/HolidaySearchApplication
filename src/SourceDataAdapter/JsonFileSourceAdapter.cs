@@ -2,16 +2,16 @@ using System.Text.Json;
 
 namespace HolidaySearchApplication.InputAdapters
 {
-    public class JsonFileAdapter : IInputAdapter<JsonFileAdapterOptions>
+    public class JsonFileSourceAdapter : ISourceDataAdapter<JsonFileSourceAdapterOptions>
     {
-        public IReadOnlyList<InputModel> Read<InputModel, OptionsType>(InputOptions<OptionsType> inputOptions)
+        public IReadOnlyList<InputModel> Read<InputModel, OptionsType>(SourceOptions<OptionsType> inputOptions)
             where InputModel : class
             where OptionsType : IOptions
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<InputModel> Read<InputModel>(InputOptions<JsonFileAdapterOptions> inputOptions)
+        public IReadOnlyList<InputModel> Read<InputModel>(SourceOptions<JsonFileSourceAdapterOptions> inputOptions)
         {
             var jsonString = File.ReadAllText(inputOptions.Options.JsonFile);
             if (jsonString == null) 
@@ -20,7 +20,7 @@ namespace HolidaySearchApplication.InputAdapters
             }
 
             return JsonSerializer.Deserialize<List<InputModel>>(
-                jsonString, JsonFileAdapterOptions.SerializationOptions) ?? new List<InputModel>();
+                jsonString, JsonFileSourceAdapterOptions.SerializationOptions) ?? new List<InputModel>();
         }
     }
 }
