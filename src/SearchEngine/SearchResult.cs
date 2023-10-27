@@ -1,6 +1,6 @@
 ﻿using HolidaySearchApplication.QueryModel;
 
-namespace HolidaySearchApplication
+namespace HolidaySearchApplication.SearchEngine
 {
     public class SearchResult<Data> where Data : ISearchResponseBase
     {

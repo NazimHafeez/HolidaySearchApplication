@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using HolidaySearchApplication;
 using HolidaySearchApplication.DomainModel.Flight;
 using HolidaySearchApplication.DomainModel.Hotel;
 using HolidaySearchApplication.InputAdapters;
 using HolidaySearchApplication.Repository;
+using HolidaySearchApplication.SearchEngine;
 
 namespace UnitTests
 {

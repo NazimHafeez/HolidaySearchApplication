@@ -3,7 +3,7 @@ using HolidaySearchApplication.DomainModel.Hotel;
 using HolidaySearchApplication.QueryModel;
 using HolidaySearchApplication.Repository;
 
-namespace HolidaySearchApplication
+namespace HolidaySearchApplication.SearchEngine
 {
     public class HolidaySearchEngine : ISearchEngine<HolidaySearch, HolidaySearchResponse>
     {
@@ -35,7 +35,7 @@ namespace HolidaySearchApplication
             }
             else
             {
-                if (searchCriteria.DepartingFrom.Equals("Any Airport", StringComparison.InvariantCultureIgnoreCase)) 
+                if (searchCriteria.DepartingFrom.Equals("Any Airport", StringComparison.InvariantCultureIgnoreCase))
                 {
                     // All the UK airports excluding destination airport
                     departureAirports.AddRange(AirportLookup.AllAirports.Where(airport => airport.Country == "UK" && !airport.Code.Equals(searchCriteria.TravellingTo, StringComparison.InvariantCultureIgnoreCase)).Select(a => a.Code).ToList());
@@ -52,7 +52,7 @@ namespace HolidaySearchApplication
             //Flights
             searchResponse.Value.Flights = GetFlightsForHolidaySearch(searchCriteria.TravellingTo, _flightRepository.GetAll(), departureAirports, DateOnly.Parse(searchCriteria.DepartureDate));
 
-            if(!searchResponse.Value.Flights.Any()) 
+            if (!searchResponse.Value.Flights.Any())
             {
                 searchResponse.Success = false;
                 searchResponse.Error = "Sorry, there are no flights for the given search criteria";
@@ -79,7 +79,7 @@ namespace HolidaySearchApplication
                 }
             }
 
-            searchResponse.Value.Results = packagedHolidayResults.OrderBy(x=> x.TotalPrice).ToList();
+            searchResponse.Value.Results = packagedHolidayResults.OrderBy(x => x.TotalPrice).ToList();
 
             return searchResponse;
         }
@@ -102,7 +102,7 @@ namespace HolidaySearchApplication
             return matchingFlights.OrderBy(x => x.Price).ToList();
         }
 
-        private static List<Hotel> GetHotelsForHolidaySearch(string arrivalAirport, DateOnly arrivalDate,  int duration, IEnumerable<Hotel> hotels)
+        private static List<Hotel> GetHotelsForHolidaySearch(string arrivalAirport, DateOnly arrivalDate, int duration, IEnumerable<Hotel> hotels)
         {
             var matchingHotels = hotels.Where(hotel =>
                 hotel.LocalAirports.Any(airport => airport.Equals(arrivalAirport, StringComparison.InvariantCultureIgnoreCase))
