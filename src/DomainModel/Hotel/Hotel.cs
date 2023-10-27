@@ -1,6 +1,8 @@
+using HolidaySearchApplication.Repository;
+
 namespace HolidaySearchApplication.DomainModel.Hotel
 {
-    public class Hotel
+    public class Hotel: EntityBase
     {
         public int Id { get; set; }
         public string Name { get; set; }

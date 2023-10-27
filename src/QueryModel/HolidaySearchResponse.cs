@@ -3,13 +3,12 @@ using HolidaySearchApplication.DomainModel.Hotel;
 
 namespace HolidaySearchApplication.QueryModel
 {
-    public class HolidaySearchResponse
+    public class HolidaySearchResponse: ISearchResponseBase
     {
-        public Flight Flight { get; set; }
+        public List<Flight> Flights { get; set; }
 
-        public Hotel Hotel { get; set; }
+        public List<Hotel> Hotels { get; set; }
 
-        public int TotalPrice => (Hotel.PricePerNight * Hotel.Nights) + Flight.Price;
-
+        public List<HolidayPackage> Results { get; set; }
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace HolidaySearchApplication.DomainModel.Flight
+﻿using HolidaySearchApplication.Repository;
+
+namespace HolidaySearchApplication.DomainModel.Flight
 {
-    public class Flight
+    public class Flight: EntityBase
     {
         public int Id { get; set; }
         public string Airline { get; set; }
