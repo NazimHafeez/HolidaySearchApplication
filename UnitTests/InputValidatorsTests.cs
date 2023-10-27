@@ -2,6 +2,7 @@
 
 using FluentAssertions;
 using HolidaySearchApplication.QueryModel;
+using HolidaySearchApplication.Validators;
 
 namespace UnitTests
 {

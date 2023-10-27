@@ -4,6 +4,7 @@ using HolidaySearchApplication.DomainModel.Hotel;
 using HolidaySearchApplication.InputAdapters;
 using HolidaySearchApplication.Repository;
 using HolidaySearchApplication.SearchEngine;
+using HolidaySearchApplication.Validators;
 
 namespace UnitTests
 {
@@ -52,7 +53,7 @@ namespace UnitTests
             var hotels = new JsonFileSourceAdapter().Read<Hotel>(GetJsonFileAdapterOptions("Hotels.json"));
             _flightRepository.AddRange(flights);
             _hotelRepository.AddRange(hotels);
-            _searchEngine = new HolidaySearchEngine(new HolidaySearchApplication.QueryModel.HolidaySearchValidator(), _hotelRepository, _flightRepository);
+            _searchEngine = new HolidaySearchEngine(new HolidaySearchValidator(), _hotelRepository, _flightRepository);
         }
     }
 }
