@@ -2,6 +2,7 @@
 using HolidaySearchApplication.DomainModel.Hotel;
 using HolidaySearchApplication.QueryModel;
 using HolidaySearchApplication.Repository;
+using HolidaySearchApplication.Validators;
 
 namespace HolidaySearchApplication.SearchEngine
 {
